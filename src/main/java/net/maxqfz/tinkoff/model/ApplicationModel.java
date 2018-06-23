@@ -5,60 +5,60 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 
 public class ApplicationModel {
-    private long Contact_Id;
-    private long Application_Id;
-    private LocalDate Dt_Created;
-    private String Product_Name;
+    private long ContactId;
+    private long ApplicationId;
+    private LocalDate DtCreated;
+    private String ProductName;
 
-    public ApplicationModel(long contact_Id, long application_Id, LocalDate dt_Created, String product_Name)
+    public ApplicationModel(long contactId, long applicationId, LocalDate dtCreated, String productName)
     {
-        Contact_Id = contact_Id;
-        Application_Id = application_Id;
-        Dt_Created = dt_Created;
-        Product_Name = product_Name;
+        ContactId = contactId;
+        ApplicationId = applicationId;
+        DtCreated = dtCreated;
+        ProductName = productName;
     }
 
     @JsonProperty("CONTACT_ID")
-    public long getContact_Id()
+    public long getContactId()
     {
-        return Contact_Id;
+        return ContactId;
     }
 
     @JsonProperty("APPLICATION_ID")
-    public long getApplication_Id()
+    public long getApplicationId()
     {
-        return Application_Id;
+        return ApplicationId;
     }
 
     @JsonProperty("DT_CREATED")
-    public LocalDate getDt_Created()
+    public LocalDate getDtCreated()
     {
-        return Dt_Created;
+        return DtCreated;
     }
 
     @JsonProperty("PRODUCT_NAME")
-    public String getProduct_Name()
+    public String getProductName()
     {
-        return Product_Name;
+        return ProductName;
     }
 
-    public void setContact_Id(long contact_Id)
+    public void setContactId(long contact_Id)
     {
-        Contact_Id = contact_Id;
+        ContactId = contact_Id;
     }
 
-    public void setApplication_Id(long application_Id)
+    public void setApplicationId(long applicationId)
     {
-        Application_Id = application_Id;
+        ApplicationId = applicationId;
     }
 
-    public void setDt_Created(LocalDate dt_Created)
+    public void setDtCreated(LocalDate dtCreated)
     {
-        Dt_Created = dt_Created;
+        DtCreated = dtCreated;
     }
 
-    public void setProduct_Name(String product_Name)
+    public void setProductName(String productName)
     {
-        Product_Name = product_Name;
+        ProductName = productName;
     }
 }

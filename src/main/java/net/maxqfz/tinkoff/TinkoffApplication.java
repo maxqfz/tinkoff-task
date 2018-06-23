@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TinkoffApplication implements CommandLineRunner {
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
     public static void main(String args[]) {
         SpringApplication.run(TinkoffApplication.class, args);
@@ -25,6 +25,6 @@ public class TinkoffApplication implements CommandLineRunner {
 
     public static void log(String info)
     {
-        log.info(info);
+        LOGGER.info(info);
     }
 }
