@@ -18,12 +18,12 @@ public class TinkoffApplication {
     public CommandLineRunner init(ApplicationRepository repository) {
         return (args) -> {
             //Adding demo data
-            repository.save(new ApplicationModel(1, LocalDate.parse("2017-05-04"), "WrongProduct"));
-            repository.save(new ApplicationModel(1, LocalDate.parse("2017-05-09"), "RightProduct"));
-            repository.save(new ApplicationModel(1, LocalDate.parse("2017-05-03"), "WrongProduct"));
-            repository.save(new ApplicationModel(2, LocalDate.parse("2017-01-01"), "RightProduct"));
-            repository.save(new ApplicationModel(3, LocalDate.parse("2017-04-14"), "WrongProduct"));
-            repository.save(new ApplicationModel(3, LocalDate.parse("2017-05-04"), "RightProduct"));
+            repository.save(new ApplicationEntity(1, LocalDate.parse("2017-05-04"), "WrongProduct"));
+            repository.save(new ApplicationEntity(1, LocalDate.parse("2017-05-09"), "RightProduct"));
+            repository.save(new ApplicationEntity(1, LocalDate.parse("2017-05-03"), "WrongProduct"));
+            repository.save(new ApplicationEntity(2, LocalDate.parse("2017-01-01"), "RightProduct"));
+            repository.save(new ApplicationEntity(3, LocalDate.parse("2017-04-14"), "WrongProduct"));
+            repository.save(new ApplicationEntity(3, LocalDate.parse("2017-05-04"), "RightProduct"));
         };
     }
 }

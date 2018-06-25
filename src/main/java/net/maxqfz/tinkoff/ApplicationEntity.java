@@ -9,29 +9,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
-public class ApplicationModel {
+@Data
+@NoArgsConstructor
+class ApplicationEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @JsonProperty("APPLICATION_ID")
-    @Getter private long applicationId;
+    private long applicationId;
 
     @JsonProperty("CONTACT_ID")
-    @Getter @Setter private long contactId;
+    private long contactId;
 
     @JsonProperty("DT_CREATED")
-    @Getter @Setter private LocalDate dtCreated;
+    private LocalDate dtCreated;
 
     @JsonProperty("PRODUCT_NAME")
-    @Getter @Setter private String productName;
+    private String productName;
 
-    protected ApplicationModel(){}
-
-    ApplicationModel(long contactId, LocalDate dtCreated, String productName)
+    ApplicationEntity(long contactId, LocalDate dtCreated, String productName)
     {
         this.contactId = contactId;
         this.dtCreated = dtCreated;
