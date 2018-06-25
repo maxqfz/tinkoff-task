@@ -11,13 +11,11 @@ import javax.persistence.Id;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
-class ApplicationEntity {
+public class ApplicationEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,8 +31,7 @@ class ApplicationEntity {
     @JsonProperty("PRODUCT_NAME")
     private String productName;
 
-    ApplicationEntity(long contactId, LocalDate dtCreated, String productName)
-    {
+    ApplicationEntity(long contactId, LocalDate dtCreated, String productName) {
         this.contactId = contactId;
         this.dtCreated = dtCreated;
         this.productName = productName;

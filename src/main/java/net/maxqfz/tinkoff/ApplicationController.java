@@ -16,19 +16,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 public class ApplicationController {
-    final ApplicationRepository repository;
+    private final ApplicationRepository repository;
 
     @GetMapping(value = "/")
     @Transactional
-    public List<ApplicationEntity> getAllApplications()
-    {
+    public List<ApplicationEntity> getAllApplications() {
         return repository.findAll();
     }
 
     @GetMapping(value = "/{contactId}")
     @Transactional
-    public Optional<ApplicationEntity> getLastApplication(@PathVariable @NotNull @DecimalMin("0") Long contactId)
-    {
+    public Optional<ApplicationEntity> getLastApplication(@PathVariable @NotNull @DecimalMin("0") Long contactId) {
         Page<ApplicationEntity> applications = repository.findByContactId(
                 contactId,
                 PageRequest.of(0, 1, Sort.Direction.DESC, "dtCreated")
