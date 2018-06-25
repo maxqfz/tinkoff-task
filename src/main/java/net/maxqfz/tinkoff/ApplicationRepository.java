@@ -1,9 +1,9 @@
 package net.maxqfz.tinkoff;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.data.repository.CrudRepository;
-
-public interface ApplicationRepository extends CrudRepository<ApplicationModel, Long> {
-    List<ApplicationModel> findByContactId(long contactId);
+public interface ApplicationRepository extends JpaRepository<ApplicationEntity, Long> {
+    Page<ApplicationEntity> findByContactId(long contactId, Pageable pageRequest);
 }
