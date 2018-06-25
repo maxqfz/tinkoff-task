@@ -1,39 +1,38 @@
 package net.maxqfz.tinkoff;
 
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.constraints.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 public class ApplicationController {
-    @Autowired
-    ApplicationRepository repository;
+    final ApplicationRepository repository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Iterable<ApplicationModel> getAllApplications()
+    @GetMapping(value = "/")
+    @Transactional
+    public List<ApplicationEntity> getAllApplications()
     {
-        //Finding and returning all applications
         return repository.findAll();
     }
 
-    @RequestMapping(value = "/{contactId}", method = RequestMethod.GET)
-    public ApplicationModel getLastApplication(@PathVariable @NotNull @DecimalMin("0") Long contactId)
+    @GetMapping(value = "/{contactId}")
+    @Transactional
+    public Optional<ApplicationEntity> getLastApplication(@PathVariable @NotNull @DecimalMin("0") Long contactId)
     {
-        //Finding all applications by contact
-        List<ApplicationModel> applications = repository.findByContactId(contactId);
-        //Returning null if there's none
-        if(applications.isEmpty())
-            return null;
-        //Finding and returning last application if there's some
-        ApplicationModel last = applications.get(0);
-        for(int i = 1; i < applications.size(); ++i)
-            if(applications.get(i).getDtCreated().isAfter(last.getDtCreated()))
-                last = applications.get(i);
-        return last;
+        Page<ApplicationEntity> applications = repository.findByContactId(
+                contactId,
+                PageRequest.of(0, 1, Sort.Direction.DESC, "dtCreated")
+        );
+        return applications.stream().findFirst();
     }
 }
