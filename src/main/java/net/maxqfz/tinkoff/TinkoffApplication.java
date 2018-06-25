@@ -1,30 +1,29 @@
 package net.maxqfz.tinkoff;
 
-import javafx.application.Application;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDate;
 
 @SpringBootApplication
-public class TinkoffApplication implements CommandLineRunner {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
+public class TinkoffApplication {
 
     public static void main(String args[]) {
         SpringApplication.run(TinkoffApplication.class, args);
     }
 
-    @Override
-    public void run(String... strings) throws Exception
-    {
-        DatabaseService.init();
-    }
-
-    public static void log(String info)
-    {
-        LOGGER.info(info);
+    @Bean
+    public CommandLineRunner init(ApplicationRepository repository) {
+        return (args) -> {
+            //Adding demo data
+            repository.save(new ApplicationModel(1, LocalDate.parse("2017-05-04"), "WrongProduct"));
+            repository.save(new ApplicationModel(1, LocalDate.parse("2017-05-09"), "RightProduct"));
+            repository.save(new ApplicationModel(1, LocalDate.parse("2017-05-03"), "WrongProduct"));
+            repository.save(new ApplicationModel(2, LocalDate.parse("2017-01-01"), "RightProduct"));
+            repository.save(new ApplicationModel(3, LocalDate.parse("2017-04-14"), "WrongProduct"));
+            repository.save(new ApplicationModel(3, LocalDate.parse("2017-05-04"), "RightProduct"));
+        };
     }
 }

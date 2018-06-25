@@ -17,9 +17,10 @@ public class TinkoffApplicationTests {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void HomeURLShouldThrowErrorPage() {
+    public void HomeURLShouldGiveAllApplications() {
         String body = this.restTemplate.getForObject("/", String.class);
-        assertThat(body).contains("error");
+        assertThat(body).contains("WrongProduct");
+        assertThat(body).contains("RightProduct");
     }
 
     @Test
@@ -41,8 +42,8 @@ public class TinkoffApplicationTests {
     }
 
     @Test
-    public void Get4ShouldThrowErrorPage() {
-        String body = this.restTemplate.getForObject("/4", String.class);
+    public void GetSomePageShouldThrowError() {
+        String body = this.restTemplate.getForObject("/somepage", String.class);
         assertThat(body).contains("error");
     }
 }
